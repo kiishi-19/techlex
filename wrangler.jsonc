@@ -1,0 +1,24 @@
+{
+  "name": "techlex",
+  "account_id": "6bea4abeca519658cb8ba205c96c1f70",
+  "compatibility_date": "2026-04-21",
+  "main": "./src/index.ts",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "SUBSCRIBERS",
+      "id": "6a7d0e35203947c1bce1797a7a154b1a"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "EMAIL_SENDER"
+    }
+  ],
+  "triggers": {
+    "crons": ["0 8 * * *"]
+  }
+}

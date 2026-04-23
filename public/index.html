@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechLex — Tech Terminology Glossary</title>
+  <meta name="description" content="The definitive glossary of tech terminology across every field. Search, browse, and learn one term a day." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131c;
+      --surface2: #1a1a26;
+      --border: rgba(139,92,246,0.15);
+      --border2: rgba(255,255,255,0.07);
+      --accent: #8b5cf6;
+      --accent2: #a78bfa;
+      --accent-dim: rgba(139,92,246,0.12);
+      --text: #e8e8f0;
+      --text-muted: #888899;
+      --green: #22c55e;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,15,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border2);
+      padding: 0 1.5rem;
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; gap: 1rem;
+    }
+    .logo {
+      font-size: 1.4rem; font-weight: 900; letter-spacing: -0.04em;
+      background: linear-gradient(135deg, #a78bfa, #7c3aed);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; white-space: nowrap;
+    }
+    .header-search {
+      flex: 1; max-width: 480px;
+      position: relative;
+    }
+    .header-search input {
+      width: 100%; padding: 0.55rem 1rem 0.55rem 2.5rem;
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 8px; color: var(--text); font-size: 0.875rem;
+      outline: none; font-family: 'Inter', sans-serif;
+      transition: border-color 0.15s;
+    }
+    .header-search input:focus { border-color: var(--accent); }
+    .header-search input::placeholder { color: var(--text-muted); }
+    .search-icon {
+      position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); pointer-events: none; font-size: 0.9rem;
+    }
+    .header-sub-btn {
+      padding: 0.5rem 1rem; background: var(--accent-dim);
+      border: 1px solid rgba(139,92,246,0.3); border-radius: 8px;
+      color: var(--accent2); font-size: 0.8rem; font-weight: 700;
+      cursor: pointer; white-space: nowrap; transition: all 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+    .header-sub-btn:hover { background: rgba(139,92,246,0.2); }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 5rem 1.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(139,92,246,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.3rem 0.9rem;
+      background: var(--accent-dim); border: 1px solid rgba(139,92,246,0.3);
+      border-radius: 99px; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent2);
+      margin-bottom: 1.5rem;
+    }
+    .dot-live { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: blink 2s ease infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900; letter-spacing: -0.04em; line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero p {
+      color: var(--text-muted); font-size: 1.1rem;
+      max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.6;
+    }
+    .hero-stats {
+      display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 1.8rem; font-weight: 900; color: var(--accent2); letter-spacing: -0.03em; }
+    .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
+
+    /* ── TODAY'S TERM ── */
+    .today-section {
+      max-width: 900px; margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+    .today-card {
+      background: linear-gradient(135deg, #1a0d2e 0%, #150d25 100%);
+      border: 1px solid rgba(139,92,246,0.3);
+      border-radius: 20px; padding: 2rem 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .today-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .today-label {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent2); margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .today-term { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.4rem; }
+    .today-cat {
+      display: inline-block; padding: 0.2rem 0.65rem;
+      background: var(--accent-dim); border-radius: 99px;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--accent2); margin-bottom: 1rem;
+    }
+    .today-def { font-size: 1rem; color: rgba(255,255,255,0.8); line-height: 1.65; margin-bottom: 1rem; }
+    .today-usage { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; border-left: 2px solid var(--accent); padding-left: 0.85rem; }
+    .today-full-btn {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      margin-top: 1.25rem; font-size: 0.85rem; font-weight: 700;
+      color: var(--accent2); cursor: pointer; background: none; border: none;
+      font-family: 'Inter', sans-serif; transition: gap 0.15s;
+    }
+    .today-full-btn:hover { gap: 0.5rem; }
+
+    /* ── MAIN LAYOUT ── */
+    .main { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      margin-bottom: 2rem; align-items: center;
+    }
+    .filter-bar-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-right: 0.25rem; }
+    .cat-btn {
+      padding: 0.35rem 0.85rem; border-radius: 99px;
+      border: 1px solid var(--border2); background: var(--surface);
+      color: var(--text-muted); font-size: 0.78rem; font-weight: 600;
+      cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+    }
+    .cat-btn:hover { border-color: var(--accent); color: var(--accent2); }
+    .cat-btn.active {
+      border-color: var(--accent); background: var(--accent-dim); color: var(--accent2);
+    }
+
+    /* ── RESULTS INFO ── */
+    .results-info { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .results-info strong { color: var(--text); }
+
+    /* ── TERMS GRID ── */
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+
+    /* ── TERM CARD ── */
+    .term-card {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: var(--radius); padding: 1.25rem;
+      cursor: pointer; transition: all 0.15s;
+      display: flex; flex-direction: column; gap: 0.65rem;
+    }
+    .term-card:hover {
+      border-color: var(--accent); background: var(--surface2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(139,92,246,0.12);
+    }
+    .term-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+    .term-name { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.02em; }
+    .term-cat-badge {
+      display: inline-block; padding: 0.15rem 0.55rem;
+      background: var(--accent-dim); border-radius: 99px;
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--accent2); white-space: nowrap; flex-shrink: 0;
+    }
+    .term-short { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+    .term-arrow { font-size: 0.75rem; color: var(--accent); opacity: 0; transition: opacity 0.15s; }
+    .term-card:hover .term-arrow { opacity: 1; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
+      align-items: center; justify-content: center; padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; max-width: 640px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+      position: relative;
+      animation: modalIn 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes modalIn { 0%{transform:scale(0.92);opacity:0} 100%{transform:scale(1);opacity:1} }
+    .modal-header {
+      padding: 1.5rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--border2);
+      position: sticky; top: 0; background: var(--surface);
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+    }
+    .modal-term { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.03em; }
+    .modal-close {
+      width: 2rem; height: 2rem; border-radius: 50%;
+      background: var(--surface2); border: none; color: var(--text-muted);
+      cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background 0.15s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.1); }
+    .modal-body { padding: 1.25rem 1.5rem 1.5rem; }
+    .modal-cat { display: inline-block; margin-bottom: 1rem; padding: 0.2rem 0.65rem;
+      background: var(--accent-dim); border-radius: 99px;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent2); }
+    .modal-short {
+      font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.9);
+      border-left: 3px solid var(--accent); padding-left: 1rem;
+      margin-bottom: 1.5rem; line-height: 1.6;
+    }
+    .modal-section-label {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.5rem;
+    }
+    .modal-section-body { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 1.25rem; }
+    .modal-example {
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 10px; padding: 1rem; margin-top: 0.5rem;
+    }
+    .modal-example-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent2); margin-bottom: 0.5rem; }
+    .modal-example-text { font-size: 0.875rem; color: rgba(255,255,255,0.8); line-height: 1.6; font-style: italic; }
+
+    /* ── SUBSCRIBE SECTION ── */
+    .subscribe-section {
+      max-width: 640px; margin: 2rem auto 4rem;
+      background: linear-gradient(135deg, #1a0d2e 0%, #150d25 100%);
+      border: 1px solid rgba(139,92,246,0.25); border-radius: 20px;
+      padding: 2.5rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .subscribe-section::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .subscribe-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .subscribe-section h2 {
+      font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.5rem;
+    }
+    .subscribe-section p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.6; }
+    .subscribe-perks { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.75rem; }
+    .perk { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--text-muted); }
+    .perk-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+    .subscribe-form { display: flex; gap: 0.65rem; max-width: 420px; margin: 0 auto; }
+    .subscribe-input {
+      flex: 1; padding: 0.8rem 1rem;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; color: var(--text); font-size: 0.9rem; outline: none;
+      font-family: 'Inter', sans-serif; transition: border-color 0.15s;
+    }
+    .subscribe-input:focus { border-color: var(--accent); }
+    .subscribe-input::placeholder { color: var(--text-muted); }
+    .subscribe-btn {
+      padding: 0.8rem 1.4rem; background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+      border: none; border-radius: 8px; color: #fff; font-size: 0.9rem; font-weight: 700;
+      cursor: pointer; white-space: nowrap; font-family: 'Inter', sans-serif;
+      transition: all 0.15s;
+    }
+    .subscribe-btn:hover { box-shadow: 0 4px 20px rgba(139,92,246,0.5); transform: translateY(-1px); }
+    .subscribe-btn:disabled { opacity: 0.6; cursor: default; transform: none; box-shadow: none; }
+    .subscribe-msg { margin-top: 0.75rem; font-size: 0.85rem; min-height: 1.2rem; }
+    .subscribe-msg.success { color: var(--green); }
+    .subscribe-msg.error { color: #f43f5e; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border2);
+      text-align: center; padding: 2rem 1.5rem;
+      color: var(--text-muted); font-size: 0.8rem;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+
+    /* ── EMPTY STATE ── */
+    .empty { text-align: center; padding: 4rem 1rem; color: var(--text-muted); }
+    .empty h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero-stats { gap: 1.25rem; }
+      .terms-grid { grid-template-columns: 1fr; }
+      .subscribe-form { flex-direction: column; }
+      .header-inner { gap: 0.5rem; }
+      .header-sub-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">TechLex</div>
+      <div class="header-search">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="header-search-input" placeholder="Search 100+ tech terms..." />
+      </div>
+      <button class="header-sub-btn" onclick="document.getElementById('subscribe').scrollIntoView({behavior:'smooth'})">
+        Get daily term →
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge"><span class="dot-live"></span> Always up to date</div>
+    <h1>The tech dictionary<br /><span>everyone actually needs.</span></h1>
+    <p>Plain-English definitions for every tech term — Web, AI, Cloud, Security, DevOps, Data, and more. Plus get one term delivered to your inbox every day.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num" id="stat-terms">—</div><div class="stat-label">Terms</div></div>
+      <div class="stat"><div class="stat-num" id="stat-cats">—</div><div class="stat-label">Fields</div></div>
+      <div class="stat"><div class="stat-num" id="stat-subs">—</div><div class="stat-label">Subscribers</div></div>
+    </div>
+  </section>
+
+  <!-- TODAY'S TERM -->
+  <div class="today-section">
+    <div class="today-card" id="today-card">
+      <div class="today-label"><span class="dot-live"></span> Term of the Day</div>
+      <div class="today-term" id="today-term">Loading...</div>
+      <div><span class="today-cat" id="today-cat"></span></div>
+      <div class="today-def" id="today-def"></div>
+      <div class="today-usage" id="today-usage"></div>
+      <button class="today-full-btn" id="today-full-btn">Read full definition →</button>
+    </div>
+  </div>
+
+  <!-- MAIN GLOSSARY -->
+  <main class="main">
+    <!-- Filter bar -->
+    <div class="filter-bar" id="filter-bar">
+      <span class="filter-bar-label">Filter:</span>
+      <button class="cat-btn active" data-cat="">All</button>
+    </div>
+
+    <!-- Results info -->
+    <div class="results-info" id="results-info"></div>
+
+    <!-- Terms grid -->
+    <div class="terms-grid" id="terms-grid"></div>
+  </main>
+
+  <!-- SUBSCRIBE -->
+  <div id="subscribe" style="padding: 0 1.5rem;">
+    <div class="subscribe-section">
+      <div class="subscribe-icon">📬</div>
+      <h2>One term a day.<br/>Every day.</h2>
+      <p>Subscribe and get a new tech term delivered to your inbox every morning — with a plain-English definition, how to use it at work, and an example sentence.</p>
+      <div class="subscribe-perks">
+        <div class="perk"><span class="perk-dot"></span> Daily at 8am UTC</div>
+        <div class="perk"><span class="perk-dot"></span> Real-world usage tips</div>
+        <div class="perk"><span class="perk-dot"></span> No spam, ever</div>
+        <div class="perk"><span class="perk-dot"></span> Unsubscribe anytime</div>
+      </div>
+      <div class="subscribe-form">
+        <input type="email" class="subscribe-input" id="sub-email" placeholder="your@email.com" />
+        <button class="subscribe-btn" id="sub-btn">Subscribe</button>
+      </div>
+      <div class="subscribe-msg" id="sub-msg"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Built on <a href="https://workers.cloudflare.com" target="_blank">Cloudflare Workers</a> &nbsp;·&nbsp;
+    <span id="footer-count"></span> terms across <span id="footer-cats"></span> fields
+  </footer>
+
+  <!-- TERM MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-term" id="modal-term"></div>
+        </div>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-cat" id="modal-cat"></div>
+        <div class="modal-short" id="modal-short"></div>
+        <div class="modal-section-label">Full Definition</div>
+        <div class="modal-section-body" id="modal-def"></div>
+        <div class="modal-section-label">How to Use It at Work or in a Discussion</div>
+        <div class="modal-section-body" id="modal-usage"></div>
+        <div class="modal-example">
+          <div class="modal-example-label">Example in a sentence</div>
+          <div class="modal-example-text" id="modal-example"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────────────────
+let allTerms = [];
+let activeCategory = '';
+let searchQuery = '';
+
+// ── FETCH DATA ──────────────────────────────────────────────────────────────
+async function loadData() {
+  const [termsRes, statsRes, todayRes] = await Promise.all([
+    fetch('/api/terms'),
+    fetch('/api/stats'),
+    fetch('/api/today'),
+  ]);
+  const { terms, categories } = await termsRes.json();
+  const stats = await statsRes.json();
+  const today = await todayRes.json();
+
+  allTerms = terms;
+
+  // Stats
+  document.getElementById('stat-terms').textContent = stats.totalTerms;
+  document.getElementById('stat-cats').textContent = stats.totalCategories;
+  document.getElementById('stat-subs').textContent = stats.totalSubscribers + '+';
+  document.getElementById('footer-count').textContent = stats.totalTerms;
+  document.getElementById('footer-cats').textContent = stats.totalCategories;
+
+  // Today's term
+  renderToday(today);
+
+  // Filter buttons
+  buildFilters(categories);
+
+  // Grid
+  renderGrid();
+}
+
+// ── TODAY'S TERM ──────────────────────────────────────────────────────────────
+function renderToday(term) {
+  document.getElementById('today-term').textContent = term.term;
+  document.getElementById('today-cat').textContent = term.category;
+  document.getElementById('today-def').textContent = term.definition;
+  document.getElementById('today-usage').textContent = term.usage;
+  document.getElementById('today-full-btn').addEventListener('click', () => openModal(term));
+}
+
+// ── FILTERS ───────────────────────────────────────────────────────────────────
+function buildFilters(categories) {
+  const bar = document.getElementById('filter-bar');
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn';
+    btn.dataset.cat = cat;
+    btn.textContent = cat;
+    btn.addEventListener('click', () => setCategory(cat));
+    bar.appendChild(btn);
+  });
+}
+
+function setCategory(cat) {
+  activeCategory = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.cat === cat);
+  });
+  renderGrid();
+}
+
+// ── SEARCH ────────────────────────────────────────────────────────────────────
+document.getElementById('header-search-input').addEventListener('input', e => {
+  searchQuery = e.target.value.toLowerCase().trim();
+  activeCategory = '';
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === ''));
+  renderGrid();
+});
+
+// ── RENDER GRID ───────────────────────────────────────────────────────────────
+function renderGrid() {
+  let results = allTerms;
+  if (activeCategory) results = results.filter(t => t.category === activeCategory);
+  if (searchQuery) results = results.filter(t =>
+    t.term.toLowerCase().includes(searchQuery) ||
+    t.shortDef.toLowerCase().includes(searchQuery) ||
+    t.definition.toLowerCase().includes(searchQuery) ||
+    t.category.toLowerCase().includes(searchQuery)
+  );
+
+  const info = document.getElementById('results-info');
+  if (searchQuery) {
+    info.innerHTML = `<strong>${results.length}</strong> result${results.length !== 1 ? 's' : ''} for "<strong>${searchQuery}</strong>"`;
+  } else if (activeCategory) {
+    info.innerHTML = `<strong>${results.length}</strong> terms in <strong>${activeCategory}</strong>`;
+  } else {
+    info.innerHTML = `Showing all <strong>${results.length}</strong> terms`;
+  }
+
+  const grid = document.getElementById('terms-grid');
+  if (results.length === 0) {
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><h3>No terms found</h3><p>Try a different search or browse all categories.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = results.map(t => `
+    <div class="term-card" data-id="${t.id}">
+      <div class="term-card-top">
+        <div class="term-name">${t.term}</div>
+        <div class="term-cat-badge">${t.category}</div>
+      </div>
+      <div class="term-short">${t.shortDef}</div>
+      <div class="term-arrow">Read more →</div>
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.term-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const term = allTerms.find(t => t.id === card.dataset.id);
+      if (term) openModal(term);
+    });
+  });
+}
+
+// ── MODAL ─────────────────────────────────────────────────────────────────────
+function openModal(term) {
+  document.getElementById('modal-term').textContent = term.term;
+  document.getElementById('modal-cat').textContent = term.category;
+  document.getElementById('modal-short').textContent = term.shortDef;
+  document.getElementById('modal-def').textContent = term.definition;
+  document.getElementById('modal-usage').textContent = term.usage;
+  document.getElementById('modal-example').textContent = term.example;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── SUBSCRIBE ─────────────────────────────────────────────────────────────────
+document.getElementById('sub-btn').addEventListener('click', async () => {
+  const email = document.getElementById('sub-email').value.trim();
+  const msg = document.getElementById('sub-msg');
+  const btn = document.getElementById('sub-btn');
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    msg.textContent = 'Please enter a valid email address.';
+    msg.className = 'subscribe-msg error';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Subscribing...';
+
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const data = await res.json();
+    if (data.success) {
+      msg.textContent = data.message;
+      msg.className = 'subscribe-msg success';
+      document.getElementById('sub-email').value = '';
+      btn.textContent = '✓ Subscribed!';
+    } else {
+      msg.textContent = data.error || 'Something went wrong. Try again.';
+      msg.className = 'subscribe-msg error';
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+    }
+  } catch {
+    msg.textContent = 'Network error. Please try again.';
+    msg.className = 'subscribe-msg error';
+    btn.disabled = false;
+    btn.textContent = 'Subscribe';
+  }
+});
+
+document.getElementById('sub-email').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('sub-btn').click();
+});
+
+// ── INIT ───────────────────────────────────────────────────────────────────────
+loadData();
+</script>
+</body>
+</html>
