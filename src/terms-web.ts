@@ -1,0 +1,6 @@
+import type { Term } from "./terms";
+
+export const WEB_TERMS: Term[] = [
+  { id:"api", term:"API", category:"Web Development", shortDef:"A set of rules that lets software talk to other software.", definition:"Application Programming Interface (API) is a contract between systems defining how one piece of software requests data or actions from another. APIs hide internal complexity and expose only what\'s needed.", usage:"Use when discussing integrations, data fetching, or building services other developers will consume.", example:"\"Our payment system uses Stripe\'s API\" or \"We need to build a public API so partners can access our data.\"" },
+  { id:"rest", term:"REST", category:"Web Development", shortDef:"An architectural style for building web APIs using HTTP.", definition:"Representational State Transfer (REST) is an approach to web APIs where resources are identified by URLs and manipulated using standard HTTP methods: GET, POST, PUT, PATCH, DELETE. RESTful APIs are stateless — each request is self-contained.", usage:"Comes up when designing or evaluating how services communicate over the web.", example:"\"We\'re building a RESTful API where GET /users returns all users and DELETE /users/123 removes one.\"" },
+];
